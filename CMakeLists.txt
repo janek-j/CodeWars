@@ -4,4 +4,4 @@ project(CodeWars)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(CodeWars
-        deleteNth.cpp)
+        isPrime.cpp)
