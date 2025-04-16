@@ -66,3 +66,8 @@ template<typename T>
 LinkedList<T>::~LinkedList() {
     make_empty();
 }
+
+template<typename T>
+bool LinkedList<T>::is_empty() {
+    return head == nullptr;
+}
