@@ -2,7 +2,7 @@
 #include <vector>
 #include <map>
 
-std::vector<int> deleteNth(std::vector<int> arr, int n)
+std::vector<int> deleteNth(std::vector<int> arr, int n);
 {
     if(arr.size() == 0) { return {}; }
     std::map<int, int>occurences;
