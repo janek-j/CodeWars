@@ -13,8 +13,8 @@ I use this space to solve programming challenges, revisit concepts, and have som
 ## 🛠 Tech Stack
 
 - **C++ (17/20)**
-- Compiled and tested on **Linux**
-- Some scripts may also be compatible with Windows
+- Compiled and tested on **Linux** and **Windows**.
+
 
 ## 🧩 Topics Covered
 
