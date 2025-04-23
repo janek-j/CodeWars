@@ -42,9 +42,9 @@ void LinkedList<T>::delete_element(T element) {
 
 template<typename T>
 void LinkedList<T>::print_list() const {
-    std::cout << "Priting list: " << std::endl;
+    std::cout << "Printing list: " << std::endl;
     Node<T> *current = head;
-    while (current  ) {
+    while (current) {
         std::cout << current->element << " ";
         current = current -> next;
     }
