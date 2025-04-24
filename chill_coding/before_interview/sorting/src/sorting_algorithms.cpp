@@ -2,7 +2,7 @@
 #include <vector>
 
 template<typename T>
-void print_elements(std::vector<T> &vec) {
+void print_elements<T>(std::vector<T> &vec) {
     for (auto &t: vec) {
         std::cout << t << " ";
     }
@@ -20,7 +20,7 @@ std::vector<T> selection_sort(const std::vector<T> &vec); // O(n^2)
 int main() {
     std::vector<int> to_sort = {5,2,5,7,8,9,2,1,4,5,6};
     std::vector<int> bubble_sorted = insertion_sort(to_sort);
-    print_elements(bubble_sorted);
+    print_elements<int>(bubble_sorted);
     return 0;
 }
 

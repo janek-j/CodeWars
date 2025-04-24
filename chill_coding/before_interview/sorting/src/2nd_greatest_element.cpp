@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 
-
 template<typename T>
 T find_2nd_el(const std::vector<T> &vec);
 
