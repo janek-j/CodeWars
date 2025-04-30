@@ -3,6 +3,24 @@
 #include <memory>
 #include <utility>
 
+/*
+ * Smart pointery, to inteligentne wskazniki. Zapewniaja bezpieczenstwo RAII, bo automatycznie zwalniaja zasoby, gdy
+ * obiekt wychodzi z zakresu. Dzieki nim, unika sie memory leakow i double delete.
+ *
+ *      -std::unique_ptr: Wskaznik posiadajacy wylaczna wlasnosc obiektu. Mozna go przeniesc korzystajac z std::move i nie mozna kopiowac.
+ *       auto p2 = std::move(p1); //przeniesienie.
+ *
+ *      -std::shared_ptr: Umozliwia wielu wskaznikom posiadanie jednego zasobu. Dziala dzieki licznikom referencji. Gdy licznik
+ *       spadnie do zera, zasob jest zwalniany. Przy kazdej kopii licznik jest inkrementowany, a przy reset() jest dekrementowany. Wiekszy koszt, bo kontrola licznika
+ *       i pulapka cyklicznych referencji. Obiekty wzajemnie wskazujace shared_ptr nigdy sie nie zniszcza.
+ *
+ *      -std::weak_ptr: Slaby wskaznik do zasobu zarzadzanego przez shared_ptr. Nie wplywa na licznik referencji. Aby uzyskac dostep
+ *       do obiektu wywoluje sie lock(): auto tmp = sp.lock();
+ *       Weak ptr uzywa sie, gdy shared_ptr tworzy cykl ownership.
+ *
+ *
+ * */
+
 class Book {
 private:
   std::string title;
@@ -48,11 +66,6 @@ void unique_example() {
 
 
 int main() {
-  auto greater = [](const int x, const int y) { return x > y; };
-  auto lower = [](const int x, const int y) { return x < y; };
-  auto equals = [](const int x, const int y) { return x == y; };
-  const std::function<int(int)> square = [](const int x) { return x*x; };
-
   unique_example();
 
   BookShelf shelf(5);
@@ -62,11 +75,6 @@ int main() {
   shelf.add_book(std::make_shared<Book>("Przedwiośnie"));
   shelf.add_book(std::make_shared<Book>("Mistrz i Malgorzata"));
   shelf.list_books();
-
-  std::cout << greater(3, 4) << std::endl;
-  std::cout << lower(3,4) << std::endl;
-  std::cout << equals(4, 4) << std::endl;
-  std::cout << square(4) << std::endl;
 
   return 0;
 }
